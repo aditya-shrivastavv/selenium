@@ -29,3 +29,7 @@ WebDriverWait(driver=driver, timeout=30).until(
 
 - We can use implicit wait to find elements in the page
 - We can use explicit wait to wait for some time untill some condition is met
+
+## Real Life Automation Example
+
+- When you get an OTP for something, that OTP automatically gets detected and filled into the fields and submits
