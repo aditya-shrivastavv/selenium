@@ -1,7 +1,7 @@
 from selenium import webdriver
+from selenium.webdriver.common.by import By
 import os
 import booking.constants as const
-from selenium import webdriver
 
 options = webdriver.ChromeOptions()
 options.add_experimental_option("detach", True)
@@ -15,6 +15,8 @@ class Booking(webdriver.Chrome):
         self.teardown = teardown
         os.environ["PATH"] += self.driver_path
         super(Booking, self).__init__(options=options)
+        self.implicitly_wait(20)
+        self.maximize_window()
 
     def __exit__(self, exc_type, exc_val, traceback):
         """Automatically executes after the execution of the context manager has finished."""
@@ -23,4 +25,16 @@ class Booking(webdriver.Chrome):
 
     def launch_website(self):
         self.get(const.BASE_URL)
-        self.maximize_window()
+
+    def close_popup(self):
+        try:
+            popupCloseBtn = self.find_element(
+                By.XPATH, '//button[@aria-label="Dismiss sign-in info."]'
+            )
+            popupCloseBtn.click()
+        except:
+            print("No Popup?")
+            pass
+
+    def change_currency(self, currency=None):
+        pass
