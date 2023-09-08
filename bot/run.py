@@ -7,3 +7,4 @@ with Booking() as bot:
     # bot.change_currency()
     bot.destination("Mumbai")
     bot.selectDates(checkin="2023-09-08", checkout="2023-09-09")
+    bot.selectAdults()

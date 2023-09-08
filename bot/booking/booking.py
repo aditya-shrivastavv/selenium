@@ -52,3 +52,9 @@ class Booking(webdriver.Chrome):
         checkinDate.click()
         checkoutDate = self.find_element(By.CSS_SELECTOR, f'span[data-date="{checkout}"]')
         checkoutDate.click()
+
+    def selectAdults(self, count=1):
+        selectElement = self.find_element(By.CSS_SELECTOR, 'button[data-testid="occupancy-config"]')
+        selectElement.click()
+
+        # decreaseAdult = self.find_element()
