@@ -1,5 +1,6 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
 import os
 import booking.constants as const
 
@@ -38,3 +39,16 @@ class Booking(webdriver.Chrome):
 
     def change_currency(self, currency=None):
         pass
+
+    def destination(self, place):
+        placeField = self.find_element(By.NAME, "ss")
+        placeField.clear()
+        placeField.send_keys(place)
+        placeField.send_keys(Keys.ARROW_DOWN)
+        placeField.send_keys(Keys.ENTER)
+
+    def selectDates(self, checkin=None, checkout=None):
+        checkinDate = self.find_element(By.CSS_SELECTOR, f'span[data-date="{checkin}"]')
+        checkinDate.click()
+        checkoutDate = self.find_element(By.CSS_SELECTOR, f'span[data-date="{checkout}"]')
+        checkoutDate.click()
